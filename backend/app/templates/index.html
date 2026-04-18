@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tanu History</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <div>
+        <h1>Tanu</h1>
+        <p class="subtitle">Recognition History</p>
+      </div>
+      <div class="scan-indicator">
+        <span class="dot"></span>
+        <span>LIVE SYNC</span>
+      </div>
+    </header>
+
+    <section class="cards">
+      {% if items %}
+        {% for item in items %}
+          <article class="card">
+            <div class="wave"></div>
+            <div class="content">
+              <h2>{{ item.track }}</h2>
+              <p class="artist">{{ item.artist }}</p>
+              <p class="meta">
+                <span>Confidence: {{ "%.2f"|format(item.confidence) }}</span>
+                <span>Provider: {{ item.provider }}</span>
+              </p>
+              <p class="time">{{ item.timestamp }}</p>
+            </div>
+          </article>
+        {% endfor %}
+      {% else %}
+        <article class="card empty">
+          <div class="content">
+            <h2>No recognitions yet</h2>
+            <p class="artist">Run desktop client and press Start Listening</p>
+          </div>
+        </article>
+      {% endif %}
+    </section>
+  </main>
+</body>
+</html>
