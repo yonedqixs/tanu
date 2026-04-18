@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: tanu-backend
+    env: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: RECOGNITION_PROVIDER
+        value: auto
+      - key: DATABASE_URL
+        sync: false
+      - key: AUDD_API_TOKEN
+        sync: false
+      - key: ACRCLOUD_HOST
+        sync: false
+      - key: ACRCLOUD_ACCESS_KEY
+        sync: false
+      - key: ACRCLOUD_ACCESS_SECRET
+        sync: false
